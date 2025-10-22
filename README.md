@@ -5,5 +5,5 @@
 - 💬 Preguntame sobre: Python, APIs, arquitectura
 
 ## 📊 Stats rápidas
-![Stats](https://github-readme-stats.vercel.app/api?username=LDemarre&show_icons=true)
-![Streak](https://streak-stats.demolab.com?user=LDemarre)
+| ![Stats](https://github-readme-stats.vercel.app/api?username=LDemarre&show_icons=true) | ![Streak](https://streak-stats.demolab.com?user=LDemarre) |
+|---|---|
