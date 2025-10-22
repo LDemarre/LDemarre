@@ -1,4 +1,4 @@
-# ¡Hola! Soy LDemarre 👋
+# ¡Hola! Soy Lucas 👋
 
 - 🔭 Actualmente trabajando en: KrownSoft & proyectos privados
 - 🌱 En aprendizaje: FastAPI, Flutter, DevOps
