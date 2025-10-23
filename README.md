@@ -5,4 +5,4 @@
 - 💬 Preguntame sobre: Python, APIs, arquitectura
 
 ## 📊 Stats rápidas
-![User Metrics](github-metrics.svg)
+![User Metrics](./github-metrics.svg)
