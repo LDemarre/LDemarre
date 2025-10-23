@@ -63,8 +63,10 @@ jobs:
           plugin_achievements_secrets: yes
           plugin_achievements_threshold: C
 
-          # 🛡️ No rompas el SVG si algún plugin falla puntualmente
-          plugins_errors_fatal: no
+          # 🛡️ Temporalmente en 'yes' para debuggear errores de plugins
+          plugins_errors_fatal: yes
+          # Debug: mostrar errores completos
+          use_prebuilt_image: no
 
       # 3) Verificar que se generó el archivo
       - name: Verificar archivo generado
