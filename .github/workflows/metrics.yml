@@ -65,8 +65,6 @@ jobs:
 
           # 🛡️ Temporalmente en 'yes' para debuggear errores de plugins
           plugins_errors_fatal: yes
-          # Debug: mostrar errores completos
-          use_prebuilt_image: no
 
       # 3) Verificar que se generó el archivo
       - name: Verificar archivo generado
