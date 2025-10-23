@@ -1,0 +1,32 @@
+name: Generate GitHub Metrics
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"  # corre cada 12 horas
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: User metrics (LDemarre)
+        uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: LDemarre
+          template: classic
+          filename: github-metrics.svg
+          base: header, activity, community, repositories, metadata
+          config_timezone: America/Argentina/Cordoba
+          # Plugins útiles:
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          plugin_languages: yes
+          plugin_languages_ignored: html,css
+          plugin_languages_details: percentage
+          plugin_achievements: yes
+          plugin_habits: yes
+          plugin_habits_charts: yes
