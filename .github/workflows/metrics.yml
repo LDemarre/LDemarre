@@ -12,57 +12,69 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1) Traer el repo al workspace del runner
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0           # necesitamos historial para poder commitear/pushear
+
+      # 2) Generar el SVG en el workspace (no dependemos de commits internos del action)
       - name: Generar Metrics (usuario LDemarre)
         uses: lowlighter/metrics@latest
         with:
-          # 🔑 Usa el PAT guardado como secret (debe tener al menos: repo, read:org, read:user)
           token: ${{ secrets.METRICS_TOKEN }}
 
-          # 📌 Usuario y rama/archivo de salida
-          user: LDemarre
+          # Salida en el filesystem del job:
           filename: github-metrics.svg
-          committer_branch: main
+          output_action: none       # <— genera el archivo aquí (no comitea por su cuenta)
+
+          # Config básica
+          user: LDemarre
           template: classic
           config_timezone: America/Argentina/Cordoba
 
-          # 🧱 Bloques base (sin lenguajes)
+          # Bloques base (sin lenguajes)
           base: header, activity, community, repositories, metadata
-
-          # 🚫 Desactivar lenguajes (lo pediste explícito)
           plugin_languages: no
 
-          # 📊 PRs/Issues por repos (incluye abiertos)
+          # PRs/Issues (incluye abiertos)
           plugin_followup: yes
           plugin_followup_sections: repositories
           repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: no
 
-          # 🧠 Hábitos de código (config "segura")
+          # Hábitos y logros (config segura)
           plugin_habits: yes
           plugin_habits_days: 14
           plugin_habits_from: 200
           plugin_habits_charts: yes
           plugin_habits_trim: yes
 
-          # 🏆 Logros (vista compacta)
           plugin_achievements: yes
           plugin_achievements_display: compact
           plugin_achievements_threshold: C
 
-          # 🛡️ Robustez frente a API/cache (no rompas el SVG si un plugin falla)
+          # Que el SVG se genere aunque un plugin falle puntualmente
           plugins_errors_fatal: no
 
-      # 🎨 Convertir el SVG a PNG con fondo blanco (para que se vea blanco siempre)
+      # 3) Verificación: asegurarnos de que el archivo exista
+      - name: Verificar archivo generado
+        run: |
+          ls -lh
+          test -f github-metrics.svg || (echo "github-metrics.svg no se generó" && exit 1)
+
+      # 4) Convertir a PNG con fondo blanco
       - name: Convertir SVG -> PNG (fondo blanco)
         run: |
           sudo apt-get update
           sudo apt-get install -y imagemagick
           convert github-metrics.svg -background white -alpha remove -alpha off github-metrics.png
+          ls -lh github-metrics.*
 
-      # 💾 Commit del PNG si cambió (evita commits vacíos)
-      - name: Commit PNG si hubo cambios
+      # 5) Commit y push de SVG/PNG si cambiaron
+      - name: Commit y push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add github-metrics.png || true
-          git diff --cached --quiet || (git commit -m "chore(metrics): actualizar PNG con fondo blanco" && git push)
+          git add github-metrics.svg github-metrics.png || true
+          git diff --cached --quiet || (git commit -m "chore(metrics): actualizar SVG/PNG" && git push)
