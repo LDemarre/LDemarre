@@ -45,6 +45,24 @@ jobs:
           repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: no
 
+          # 🔥 Commit streak (racha de commits)
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year
+
+          # 📅 Recent Coding Habits (hábitos de codificación)
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          plugin_habits_trim: yes
+
+          # 🏆 Achievements (logros)
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_secrets: yes
+          plugin_achievements_threshold: C
+
           # 🛡️ No rompas el SVG si algún plugin falla puntualmente
           plugins_errors_fatal: no
 
