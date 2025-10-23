@@ -45,9 +45,9 @@ jobs:
           repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: no
 
-          # 🔥 Commit streak (racha de commits)
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
+          # 📅 Commit calendar (alternativa más estable que isocalendar)
+          plugin_calendar: yes
+          plugin_calendar_limit: 0  # sin límite de años
 
           # 📅 Recent Coding Habits (hábitos de codificación)
           plugin_habits: yes
