@@ -1,4 +1,4 @@
-# Hola, soy Lucas Demarre 👋
+# Hola, soy Lucas Demarré 👋
 
 Desarrollador full-stack especializado en crear aplicaciones multiplataforma y sistemas empresariales. Me enfoco en arquitectura escalable, APIs robustas y automatización de procesos.
 
@@ -31,7 +31,3 @@ Aplicación para **evaluación y seguimiento de jugadores de fútbol**. Herramie
 ## 📊 GitHub Stats
 
 ![GitHub Metrics](./github-metrics.svg)
-
----
-
-💬 ¿Preguntas sobre Python, Flutter, FastAPI o arquitectura de software? Contactame.
