@@ -18,26 +18,43 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2) Generar el SVG básico
+      # 2) Generar el SVG
       - name: Generar Metrics (usuario LDemarre)
-        uses: lowlighter/metrics@latest
+        uses: gh-metrics/metrics@master
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: LDemarre
           template: classic
-          base: header, activity, community, repositories
           config_timezone: America/Argentina/Cordoba
 
-      # 3) Verificar que se generó el archivo
-      - name: Verificar archivo generado
-        run: |
-          ls -lh
-          test -f github-metrics.svg || (echo "github-metrics.svg no se generó" && exit 1)
+          # Bloques base
+          base: header, activity, community, repositories, metadata
+          base_indepth: yes
 
-      # 4) Commit y push del SVG si cambió
-      - name: Commit y push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add github-metrics.svg || true
-          git diff --cached --quiet || (git commit -m "chore(metrics): actualizar SVG" && git push)
+          # 🚫 Sin lenguajes
+          plugin_languages: no
+
+          # 📊 Orden de secciones con separadores
+          config_order: base.header, base.activity, base.community, base.repositories, followup, notable, achievements
+          config_padding: 6%, 10%
+          config_display: large
+
+          # 📊 Overall Issues/PRs
+          plugin_followup: yes
+          plugin_followup_sections: repositories
+          repositories_affiliations: owner, collaborator, organization_member
+          repositories_forks: no
+
+          # 🌟 Notable Contributions
+          plugin_notable: yes
+          plugin_notable_from: organization
+          plugin_notable_repositories: yes
+
+          # 🏆 Achievements
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_secrets: yes
+          plugin_achievements_threshold: C
+
+          # 🛡️ No romper si algún plugin falla
+          plugins_errors_fatal: no
