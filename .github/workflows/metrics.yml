@@ -20,7 +20,7 @@ jobs:
 
       # 2) Generar el SVG en el workspace (sin comitear automáticamente)
       - name: Generar Metrics (usuario LDemarre)
-        uses: gh-metrics/metrics@master  # Fork comunitario con fix para Projects Classic
+        uses: austenstone/metrics@patch-1  # Fork con fix para Projects Classic + habits author undefined
         env:
           METRICS_DEBUG: true
         with:
@@ -54,20 +54,20 @@ jobs:
           plugin_notable_from: organization
           plugin_notable_repositories: yes
 
-          # 📊 Líneas de código cambiadas
-          plugin_lines: yes
-          plugin_lines_history_limit: 1
-          plugin_lines_repositories_limit: 4
-          plugin_lines_sections: history
+          # 📊 Líneas de código cambiadas - DESHABILITADO: bug con contributor null
+          # plugin_lines: yes
+          # plugin_lines_history_limit: 1
+          # plugin_lines_repositories_limit: 4
+          # plugin_lines_sections: history
 
-          # 📅 Recent Coding Habits (hábitos de codificación)
+          # 📅 Recent Coding Habits - usando fork austenstone con fix para author undefined
           plugin_habits: yes
-          plugin_habits_from: 100  # reducido para evitar eventos con author undefined
+          plugin_habits_from: 200
           plugin_habits_days: 14
           plugin_habits_facts: yes
           plugin_habits_charts: yes
           plugin_habits_trim: yes
-          plugin_habits_languages_limit: 4
+          plugin_habits_languages_limit: 8
 
           # 🏆 Achievements (logros) - usando fork gh-metrics con fix para Projects Classic
           plugin_achievements: yes
