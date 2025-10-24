@@ -24,9 +24,10 @@ jobs:
         with:
           token: ${{ secrets.METRICS_TOKEN }}
 
-          # Salida en el filesystem del job:
+          # Salida: commitear directamente
+          output_action: commit
           filename: github-metrics.svg
-          output_action: none
+          committer_message: "chore: actualizar métricas"
 
           # Config básica
           user: LDemarre
