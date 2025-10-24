@@ -21,8 +21,12 @@ jobs:
       # 2) Generar el SVG en el workspace (sin comitear automáticamente)
       - name: Generar Metrics (usuario LDemarre)
         uses: lowlighter/metrics@latest
+        env:
+          METRICS_DEBUG: true
         with:
           token: ${{ secrets.METRICS_TOKEN }}
+          debug: yes
+          verify: yes
 
           # Salida en el filesystem del job:
           filename: github-metrics.svg
