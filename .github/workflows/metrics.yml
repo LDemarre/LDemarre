@@ -34,8 +34,7 @@ jobs:
           # 🚫 Sin lenguajes
           plugin_languages: no
 
-          # 📊 Orden de secciones con separadores
-          config_order: base.header, base.activity, base.community, base.repositories, followup, notable, achievements
+          # 📊 Separadores visuales entre secciones
           config_padding: 6%, 10%
           config_display: large
 
