@@ -49,9 +49,16 @@ jobs:
           repositories_affiliations: owner, collaborator, organization_member
           repositories_forks: no
 
-          # 📅 Commit calendar (alternativa más estable que isocalendar)
-          plugin_calendar: yes
-          plugin_calendar_limit: 0  # sin límite de años
+          # 🌟 Contribuciones notables (incluye streaks/highlights)
+          plugin_notable: yes
+          plugin_notable_from: organization
+          plugin_notable_repositories: yes
+
+          # 📊 Líneas de código cambiadas
+          plugin_lines: yes
+          plugin_lines_history_limit: 1
+          plugin_lines_repositories_limit: 4
+          plugin_lines_sections: history
 
           # 📅 Recent Coding Habits (hábitos de codificación)
           plugin_habits: yes
